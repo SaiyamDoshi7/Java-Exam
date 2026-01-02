@@ -1,101 +1,70 @@
-📌 Project Overview
+# 🛒 Product Management & Cart System (JavaScript + LocalStorage)
 
-This is a frontend Product Management & Shopping Cart system built using
-HTML, CSS (Bootstrap), and JavaScript with LocalStorage.
+## 📌 Project Overview
+This project is a **frontend Product Management and Shopping Cart system** built using  
+**HTML, CSS (Bootstrap), and JavaScript** with **LocalStorage**.
 
-The project allows users to:
+It allows users to view products, search, sort, filter by category, and manage a shopping cart.  
+Admin functionality includes adding, editing, and deleting products.
 
-View products
+No backend or database is required.
 
-Search, sort, and filter products
+---
 
-Add products to cart
+## 🚀 Features
 
-Manage cart quantity
+### 🔹 Product Management
+- Add new products
+- Edit existing products
+- Delete products
+- View all products in a table
 
-Admin can add, edit, and delete products
+### 🔹 View Products Page
+- 🔍 Search products by name
+- 💰 Sort products by price  
+  - Low to High  
+  - High to Low
+- 📂 Filter products by category
+- 🖼️ Product image & description display
 
-All data is stored in the browser using LocalStorage (no backend required).
+### 🔹 Cart System
+- Add product to cart
+- Increase / decrease quantity
+- Remove product from cart
+- Automatic total price calculation
 
-🚀 Features
-🔹 Product Management
+### 🔹 Data Storage
+- Uses **Browser LocalStorage**
+- Data persists even after page refresh
 
-Add new products
+---
 
-Edit existing products
+## 🛠️ Technologies Used
+- HTML5
+- CSS3
+- Bootstrap 5
+- JavaScript (Vanilla JS)
+- LocalStorage
 
-Delete products
+---
 
-View all products in a table
+## 📂 Project Structure
 
-🔹 View Products Page
-
-🔍 Search products by name
-
-💰 Sort products by price
-
-Low to High
-
-High to Low
-
-📂 Filter products by category
-
-🖼️ Display product image & description
-
-🔹 Cart System
-
-Add product to cart
-
-Increase / decrease quantity
-
-Remove item from cart
-
-Auto calculate total price
-
-🔹 Data Storage
-
-Uses LocalStorage
-
-Data remains even after page refresh
-
-🛠️ Technologies Used
-
-HTML5
-
-CSS3
-
-Bootstrap 5
-
-JavaScript (Vanilla JS)
-
-Browser LocalStorage
-
-📂 Project Structure
 project-folder/
 │
-├── index.html          # Home / Product listing
-├── view.html           # View products with search, sort & filter
-├── add_product.html    # Add product page
-├── cart.html           # Cart page
+├── index.html # Product listing page
+├── view.html # View products (search, sort, filter)
+├── add_product.html # Add product page
+├── cart.html # Cart page
 │
 ├── assets/
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── script.js
-│   └── images/
+│ ├── css/
+│ │ └── style.css
+│ ├── js/
+│ │ └── script.js
+│ └── images/
 │
 └── README.md
-
-📋 Product Object Structure
-{
-  pid: 1001,
-  pname: "Sony TV",
-  price: 216000,
-  img: "url",
-  desc: "Smart Android TV",
-  category: "Tv"
-}
 
 📂 Categories Used
 
@@ -103,27 +72,29 @@ Tv
 
 Ps
 
-(You can easily add more categories)
+(You can add more categories easily)
 
 ⚙️ How to Run the Project
 
-Download or clone the repository
+Download or clone the project
 
 Open index.html in any browser
 
-Start adding products
+Add products from admin section
 
-View products, filter, sort & add to cart
+View, search, sort, filter products
 
-⚠️ No server or database needed.
+Add products to cart and manage quantity
 
-💡 Key Learning Outcomes
+⚠️ No server or backend required.
 
-DOM Manipulation
+💡 Learning Outcomes
+
+DOM manipulation
 
 LocalStorage CRUD operations
 
-Array methods (filter, map, sort)
+JavaScript array methods (map, filter, sort)
 
 Event handling
 
