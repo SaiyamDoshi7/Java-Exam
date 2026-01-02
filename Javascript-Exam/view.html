@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Products</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container my-5">
+
+  <h2 class="text-center mb-4">All Products</h2>
+  
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <input
+        type="text"
+        id="searchInput"
+        class="form-control"
+        placeholder="Search by product name"
+        onkeyup="applyFilters()"
+      >
+    </div>
+
+    <div class="col-md-3">
+      <select id="sortPrice" class="form-select" onchange="applyFilters()">
+        <option value="">Sort by Price</option>
+        <option value="low">Low to High</option>
+        <option value="high">High to Low</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <select id="categoryFilter" class="form-select" onchange="applyFilters()">
+        <option value="">All Categories</option>
+        <option value="Tv">TV</option>
+        <option value="Ps">PS</option>
+      </select>
+    </div>
+  </div>
+
+  <table class="table table-bordered text-center">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="view-body"></tbody>
+  </table>
+
+</div>
+
+<script>
+
+let products = JSON.parse(localStorage.getItem("products")) || [];
+
+products = products.map(p => {
+  if (!p.category) {
+    p.category = "Tv";
+    p.category = "Ps";
+  }
+  return p;
+});
+localStorage.setItem("products", JSON.stringify(products));
+
+function loadViewProducts(list = products) {
+  let html = "";
+  list.forEach((p, i) => {
+    html += `
+      <tr>
+        <td>${p.pid}</td>
+        <td>${p.pname}</td>
+        <td>₹${p.price}</td>
+        <td><img src="${p.img}" width="50"></td>
+        <td>${p.desc}</td>
+        <td>${p.category}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" onclick="editView(${i})">
+            Edit
+          </button>
+          <button class="btn btn-danger btn-sm" onclick="deleteView(${i})">
+            Delete
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+  document.getElementById("view-body").innerHTML = html;
+}
+
+function applyFilters() {
+  let search = document.getElementById("searchInput").value.toLowerCase();
+  let sort = document.getElementById("sortPrice").value;
+  let category = document.getElementById("categoryFilter").value;
+
+  let filtered = [...products];
+
+  if (search) {
+    filtered = filtered.filter(p =>
+      p.pname.toLowerCase().includes(search)
+    );
+  }
+
+  if (category) {
+    filtered = filtered.filter(
+      p => p.category.toLowerCase() === category.toLowerCase()
+    );
+  }
+
+  if (sort === "low") {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (sort === "high") {
+    filtered.sort((a, b) => b.price - a.price);
+  }
+
+  loadViewProducts(filtered);
+}
+
+function editView(i) {
+  localStorage.setItem("editIndex", i);
+  window.location.href = "edit.html";
+}
+
+function deleteView(i) {
+  if (confirm("Delete this product?")) {
+    products.splice(i, 1);
+    localStorage.setItem("products", JSON.stringify(products));
+    applyFilters();
+  }
+}
+
+loadViewProducts();
+</script>
+
+</body>
+</html>
